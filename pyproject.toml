@@ -1,0 +1,13 @@
+[project]
+name = "streamlit-rag-test"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastembed>=0.6.0",
+    "mcp-agent>=0.0.7",
+    "openai>=1.65.3",
+    "qdrant-client>=1.13.2",
+    "streamlit>=1.43.0",
+]

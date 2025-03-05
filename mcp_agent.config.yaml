@@ -1,0 +1,37 @@
+$schema: ../../schema/mcp-agent.config.schema.json
+
+execution_engine: asyncio
+logger:
+  type: console
+  level: debug
+  batch_size: 100
+  flush_interval: 2
+  max_queue_size: 2048
+  http_endpoint:
+  http_headers:
+  http_timeout: 5
+
+mcp:
+  servers:
+    fetch:
+      command: "uvx"
+      args: ["mcp-server-fetch"]
+    filesystem:
+      command: "npx"
+      args: ["-y", "@modelcontextprotocol/server-filesystem", "."]
+    qdrant:
+      command: "uvx"
+      args:
+        [
+          "mcp-server-qdrant",
+          "--qdrant-url",
+          "http://localhost:6333",
+          "--collection-name",
+          "my_collection",
+          "--fastembed-model-name",
+          "BAAI/bge-small-en-v1.5",
+        ]
+
+openai:
+  # Secrets (API keys, etc.) are stored in an mcp_agent.secrets.yaml file which can be gitignored
+  default_model: gpt-4o
